@@ -20,12 +20,12 @@ var SongQueue = Backbone.Collection.extend({
     });
     
     this.on('dequeue', function(event) {
-      this.remove();
+      this.remove(event.cid);
     });    
   },
 
   playFirst: function() {
-
+    this.at(0).play();
   },
 
 });
