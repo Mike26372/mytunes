@@ -21,11 +21,16 @@ var SongQueue = Backbone.Collection.extend({
     
     this.on('dequeue', function(event) {
       this.remove(event.cid);
-    });    
+    });  
+
+    this.on('change:playing', function() {
+      
+    });  
   },
 
   playFirst: function() {
     this.at(0).play();
   },
+
 
 });
