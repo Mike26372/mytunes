@@ -13,13 +13,7 @@ var SongQueue = Backbone.Collection.extend({
 
     this.on('ended', function(event) {
       var first = this.at(0);
-      // this.dequeue();
       this.remove(first);
-      console.log('this');
-      console.log(this);
-      console.log('this.length');
-      console.log(this.length);
-      console.log('song removed');
       if (this.length > 0) {
         this.playFirst();
       }
