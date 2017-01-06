@@ -16,7 +16,6 @@ var AppModel = Backbone.Model.extend({
     params.library.on('play', function(song) {
       let currQueue = this.get('songQueue');
       let playStatus = this.get('playing');
-      console.log(playStatus);
       if (!playStatus) {
         this.set('currentSong', song);
         this.set('playing', true);
@@ -31,6 +30,19 @@ var AppModel = Backbone.Model.extend({
     params.library.on('ended', function(song) {
       let playing = this.get('playing');
       this.set('playing', false);
+    }, this);
+
+    params.library.on('dequeue', function(song) {
+
+      let currQueue = this.get('songQueue');
+      if (song.cid === currQueue.at(0).cid) {
+        if (currQueue.at(1)) {
+          let nextSong = currQueue.at(1);
+          this.set('currentSong', nextSong);
+        } else {
+          this.set('playing', false);
+        }
+      }
     }, this);
   }
 
