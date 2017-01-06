@@ -41,6 +41,7 @@ var AppModel = Backbone.Model.extend({
           this.set('currentSong', nextSong);
         } else {
           this.set('playing', false);
+          $('audio').attr('src', '');
         }
       }
     }, this);
